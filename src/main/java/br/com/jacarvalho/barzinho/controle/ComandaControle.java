@@ -11,36 +11,35 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.jacarvalho.barzinho.cliente.ClienteServico;
+import br.com.jacarvalho.barzinho.comanda.ComandaServico;
 import br.com.jacarvalho.barzinho.modelo.RespostaModelo;
-import br.com.jacarvalho.barzinho.modelo.entidade.Cliente;
+import br.com.jacarvalho.barzinho.modelo.entidade.Comanda;
 
 @RestController
-@CrossOrigin(origins = "http://localhost:3000/")
-public class ClienteControle {
-
+@CrossOrigin(origins = "http://localhost:3000")
+public class ComandaControle {
+    
 
     @Autowired
-    private ClienteServico clienteServico;
+    private ComandaServico comandaServico;
 
-    @GetMapping("/clientes")
-    public Iterable<Cliente>listar(){
-        return clienteServico.listar();
+    @GetMapping("/comandas")
+    public Iterable<Comanda>listar(){
+        return comandaServico.listar();
     }
 
-    @PostMapping("/cliente")
-    public ResponseEntity<?> salvar(@RequestBody Cliente cliente){
-        return clienteServico.salvar(cliente, "Salvar");
+    @PostMapping("/comanda")
+    public ResponseEntity<?> salvar(@RequestBody Comanda comanda){
+        return comandaServico.salvar(comanda, "Salvar");
     }
 
-    @PutMapping("/cliente")
-    public ResponseEntity<?> atualizar(@RequestBody Cliente cliente){
-        return clienteServico.salvar(cliente, "Atualizar");
+    @PutMapping("/comanda")
+    public ResponseEntity<?> atualizar(@RequestBody Comanda comanda){
+        return comandaServico.salvar(comanda, "Atualizar");
     }
 
-    @DeleteMapping("/cliente/{id}")
+    @DeleteMapping("/comanda/{id}")
     public ResponseEntity<RespostaModelo> remover(@PathVariable Long id){
-        return clienteServico.remover(id);
+        return comandaServico.remover(id);
     }
-
 }
